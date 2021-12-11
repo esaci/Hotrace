@@ -1,6 +1,9 @@
 NAME = hotrace
 
-SRC = main.c
+SRC =	main.c	\
+		GNL/get_next_line.c	\
+		GNL/get_next_line_utils.c
+	
 
 CXX = cc
 CXX_FLAG = -Wall -Wextra -Werror
