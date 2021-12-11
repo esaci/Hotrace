@@ -11,8 +11,14 @@ typedef struct s_Page
 	struct s_Page *Collision;
 } t_Page;
 
+typedef struct s_db
+{
+	t_Page	*Page;
+	struct s_db *next;
+}	t_db;
+
 int	get_next_line(int fd, char **line);
-int	ft_strlen(const char *);
+unsigned int	ft_strlen(const char *);
 
 #endif
 
