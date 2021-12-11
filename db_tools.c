@@ -10,12 +10,10 @@ int	set_db(t_db **db)
 	return (0);
 }
 
-int	set_db_to_count(t_db *db, size_t count)
+int	set_db_to_count(t_db *db, size_t count, t_Page *tmp)
 {
 	size_t	parse;
-	t_db	*tmp;
 
-	tmp = db;
 	parse = 0;
 	while (parse < count)
 	{
@@ -24,6 +22,20 @@ int	set_db_to_count(t_db *db, size_t count)
 			if (set_db(&(db->next)))
 				return (1);
 		}
+		db = db->next;
 	}
+	if (!db->next)
+	{
+		set_db(&(db->next));
+		db = db->next;
+	}
+	else
+	{
+		set_db(&(db->Collision));
+		db = db->Collision;
+	}
+	db->Page = tmp;
 	return (0);
 }
+
+char	*get_db_

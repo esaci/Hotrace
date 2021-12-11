@@ -6,6 +6,7 @@ int	main( void )
 	t_Page			*tmp;
 	size_t			count;
 	char			**str;
+	t_db			*dmp;
 
 	db = NULL;
 	if (set_db(&db))
@@ -18,16 +19,17 @@ int	main( void )
 		if (get_next_line(0, &tmp->value) <= 0 || tmp->value[0] == '\n')
 			break;
 		count = hashing_function(tmp);
-		if (db[count])
-			db[count]->Collision = tmp;
-		else
-			db[count] = tmp;
+		if (set_db_to_count(db, count, tmp));
+			return (1);
 		tmp = Page_init();
 	}
 	str = NULL;
 	while (get_next_line(0, str) > 0)
 	{
+		if (!str)
+			break;
 		count =  result_function(*str);
+		
 		if (db[count])
 			write(0, db[count]->value, ft_strlen(db[count]->value));
 		else
