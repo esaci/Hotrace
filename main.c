@@ -1,52 +1,15 @@
 #include "hotrace.h"
 
-void	set_db(t_Page **db)
-{
-	size_t i;
-
-	i = 0;
-	while(i++ < DB_TAILLE)
-		db[i] = NULL;
-}
-
-size_t	hashing_function(t_Page *tmp)
-{
-	static size_t	count = 0;
-	(void) tmp;
-
-	return(count++);	
-}
-
-size_t	result_function(char *tmp)
-{
-	static size_t	count = 0;
-	(void) tmp;
-
-	return (count++);
-}
-
-t_Page	*Page_init(void)
-{
-	t_Page	*tmp;
-
-	tmp = malloc(sizeof(t_Page) * 2);
-	tmp->value = NULL;
-	tmp->keyword = NULL;
-	tmp->Collision = NULL;
-	return (tmp);
-}
-
 int	main( void )
 {
-	t_Page			**db;
+	t_db			*db;
 	t_Page			*tmp;
 	size_t			count;
 	char			**str;
 
-	db = malloc(sizeof(t_db) * (2));
-	if (!db)
+	db = NULL;
+	if (set_db(&db))
 		return (1);
-	set_db(db);
 	tmp = Page_init();
 	while (get_next_line(0, &tmp->keyword) > 0)
 	{

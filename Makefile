@@ -2,7 +2,10 @@ NAME = hotrace
 
 SRC =	main.c	\
 		GNL/get_next_line.c	\
-		GNL/get_next_line_utils.c
+		GNL/get_next_line_utils.c	\
+		hash_tools.c				\
+		db_tools.c					\
+		Page_tools.c
 	
 
 CXX = cc

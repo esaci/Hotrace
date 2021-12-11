@@ -17,8 +17,12 @@ typedef struct s_db
 	struct s_db *next;
 }	t_db;
 
-int	get_next_line(int fd, char **line);
+int				get_next_line(int fd, char **line);
 unsigned int	ft_strlen(const char *);
+size_t			hashing_function(t_Page *tmp);
+size_t			result_function(char *tmp);
+int				set_db(t_db **db);
+t_Page			*Page_init(void);
 
 #endif
 
