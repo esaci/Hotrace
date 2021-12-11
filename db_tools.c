@@ -38,4 +38,16 @@ int	set_db_to_count(t_db *db, size_t count, t_Page *tmp)
 	return (0);
 }
 
-char	*get_db_
+t_db	*get_db_with_count(t_db	*db, size_t	count)
+{
+	size_t	tmp;
+
+	tmp = 0;
+	while (tmp < count)
+	{
+		if (!db)
+			return (NULL);
+		db = db->next;
+	}
+	return (db);
+}

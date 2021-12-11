@@ -25,6 +25,7 @@ size_t			result_function(char *tmp);
 int				set_db(t_db **db);
 int	set_db_to_count(t_db *db, size_t count, t_Page *tmp);
 t_Page			*Page_init(void);
+t_db	*get_db_with_count(t_db	*db, size_t	count);
 
 #endif
 

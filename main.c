@@ -29,7 +29,7 @@ int	main( void )
 		if (!str)
 			break;
 		count =  result_function(*str);
-		
+		dmp = 
 		if (db[count])
 			write(0, db[count]->value, ft_strlen(db[count]->value));
 		else
