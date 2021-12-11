@@ -3,6 +3,7 @@
 int	main( void )
 {
 	t_Page			**db;
+	t_Page			*dmp;
 	t_Page			*tmp;
 	size_t			count;
 	char			*str;
@@ -11,33 +12,32 @@ int	main( void )
 	if (!db)
 		return (1);
 	set_db(db);
-	write(1, "db malloced\n", 13);
+	write(1, "db Ready\n", 9);
 	tmp = Page_init();
 	while (get_next_line(0, &(tmp->keyword)) > 0)
 	{
 		if (!tmp->keyword || tmp->keyword[0] == '\0')
-		{
-			write(1, "Line Break found\n", 18);
 			break;
-		}
 		if (get_next_line(0, &(tmp->value)) <= 0 || !tmp->value || tmp->value[0] == '\0')
-		{
-			write(1, "Line Break found\n", 18);
 			break;
-		}
-		count = hashing_function(tmp);
+		count = hashing_function(tmp->keyword);
 		if (db[count])
-			db[count]->Collision = tmp;
+		{
+			dmp = db[count];
+			while (dmp->Collision)
+				dmp = dmp->Collision;
+			dmp->Collision = tmp;
+		}
 		else
 			db[count] = tmp;
 		tmp = Page_init();
 	}
 	unset_Page(tmp);
 	str = NULL;
-	write(1, "Recherche ....\n", 16);
+	write(1, "Recherche ....\n", 15);
 	while (get_next_line(0, &str) > 0)
 	{
-		count = result_function(str);
+		count = hashing_function(str);
 		if (db[count])
 		{
 			write(1, db[count]->value, ft_strlen(db[count]->value));
@@ -46,7 +46,7 @@ int	main( void )
 		else
 		{
 			write(1, str, ft_strlen(str));
-			write(1, ": Not found.\n", 14);
+			write(1, ": Not found.\n", 13);
 		}
 		free(str);
 	}

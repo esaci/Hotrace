@@ -54,15 +54,18 @@ char	*ft_joining(char *line, char *countu)
 	ptr = line;
 	dst = malloc(sizeof(char) * (ft_strlen(countu) + ft_strlen(line) + 1));
 	if (!(dst))
+	{
+		free(line);
 		return (0);
+	}
 	count1 = 0;
-	while (line[count1] != '\0')
+	while (line[count1])
 	{
 		dst[count1] = line[count1];
 		count1++;
 	}
 	count2 = 0;
-	while (countu[count2] != '\0')
+	while (countu[count2])
 	{
 		dst[count1 + count2] = countu[count2];
 		count2++;
@@ -78,14 +81,14 @@ void	ft_fin(char *line, char *countu)
 	int	countb;
 
 	counta = 0;
-	while (line[counta] != '\n' && line[counta] != 0)
+	while (line[counta] && line[counta] != '\n')
 		counta++;
 	countb = 0;
 	if (line[counta] == '\n')
 	{
-		line[counta] = '\0';
+		line[counta] = 0;
 		counta++;
-		while (line[counta + countb] != '\0')
+		while (line[counta + countb])
 		{
 			countu[countb] = line[counta + countb];
 			countb++;

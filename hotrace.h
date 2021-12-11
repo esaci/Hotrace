@@ -3,7 +3,7 @@
 
 # include "unistd.h"
 # include "stdlib.h"
-# define DB_TAILLE 30000000
+# define DB_TAILLE 10000019
 
 typedef struct s_Page
 {
@@ -14,7 +14,7 @@ typedef struct s_Page
 
 int	get_next_line(int fd, char **line);
 unsigned int	ft_strlen(const char *);
-size_t	hashing_function(t_Page *tmp);
+size_t	hashing_function(char *tmp);
 size_t	result_function(char *tmp);
 void	set_db(t_Page **db);
 void	unset_Page(t_Page *tmp);
