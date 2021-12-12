@@ -54,10 +54,7 @@ char	*ft_joining(char *line, char *countu)
 	ptr = line;
 	dst = malloc(sizeof(char) * (ft_strlen(countu) + ft_strlen(line) + 1));
 	if (!(dst))
-	{
-		free(line);
-		return (0);
-	}
+		return (return_free(line));
 	count1 = 0;
 	while (line[count1])
 	{

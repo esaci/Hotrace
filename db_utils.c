@@ -53,9 +53,9 @@ void	fill_db(t_Page **db)
 		if (db[count])
 		{
 			dmp = db[count];
-			while (dmp->Collision)
-				dmp = dmp->Collision;
-			dmp->Collision = tmp;
+			while (dmp->collision)
+				dmp = dmp->collision;
+			dmp->collision = tmp;
 		}
 		else
 			db[count] = tmp;

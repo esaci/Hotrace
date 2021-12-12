@@ -33,8 +33,8 @@ char	*ft_recover(char *key, t_Page **db)
 	entry = db[hashing_function(key)];
 	if (!entry)
 		return (NULL);
-	while (entry->Collision && ft_strcmp(entry->keyword, key))
-		entry = (*entry).Collision;
+	while (entry->collision && ft_strcmp(entry->keyword, key))
+		entry = (*entry).collision;
 	if (ft_strcmp((*entry).keyword, key))
 		return (NULL);
 	return ((*entry).value);

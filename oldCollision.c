@@ -38,7 +38,7 @@ char	*ft_recover(char *key, t_Page **db)
 	if (!entry)
 		return ("not found");
 	while (!ft_strcmp((*entry).keyword, key))
-		entry = (*entry).Collision;
+		entry = (*entry).collision;
 	return ((*entry).value);
 }
 
@@ -56,7 +56,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	ft_lstad_back(t_Page *lst, t_Page *new)
 {
-	while ((*lst).Collision)
-		lst = (*lst).Collision;
-	(*lst).Collision = new;
+	while ((*lst).collision)
+		lst = (*lst).collision;
+	(*lst).collision = new;
 }

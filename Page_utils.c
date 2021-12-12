@@ -18,8 +18,8 @@ void	unset_page(t_Page *tmp)
 		free(tmp->value);
 	if (tmp->keyword)
 		free(tmp->keyword);
-	if (tmp->Collision)
-		free(tmp->Collision);
+	if (tmp->collision)
+		free(tmp->collision);
 	free(tmp);
 }
 
@@ -30,6 +30,6 @@ t_Page	*page_init(void)
 	tmp = malloc(sizeof(t_Page) * 2);
 	tmp->value = NULL;
 	tmp->keyword = NULL;
-	tmp->Collision = NULL;
+	tmp->collision = NULL;
 	return (tmp);
 }
