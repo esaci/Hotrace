@@ -2,56 +2,64 @@
 
 int	main( void )
 {
-	t_db			*db;
+
+	t_Page			**db;
+	t_Page			*dmp;
 	t_Page			*tmp;
 	size_t			count;
-	char			**str;
-	t_db			*dmp;
+	char			*str;
 
-	db = NULL;
-	if (set_db(&db))
+	db = malloc(sizeof(*db) * (DB_TAILLE + 1));
+	if (!db)
 		return (1);
+	set_db(db);
+	write(1, "db Ready\n", 9);
 	tmp = Page_init();
-	while (get_next_line(0, &tmp->keyword) > 0)
+	while (get_next_line(0, &(tmp->keyword)) > 0)
 	{
-		if (!tmp->keyword || tmp->keyword[0] == '\n')
+		if (!tmp->keyword || tmp->keyword[0] == '\0')
 			break;
-		if (get_next_line(0, &tmp->value) <= 0 || tmp->value[0] == '\n')
+		if (get_next_line(0, &(tmp->value)) <= 0 || !tmp->value || tmp->value[0] == '\0')
 			break;
-		count = hashing_function(tmp);
-		if (set_db_to_count(db, count, tmp));
-			return (1);
+
+		count = hashing_function(tmp->keyword);
+		if (db[count])
+		{
+			dmp = db[count];
+			while (dmp->Collision)
+				dmp = dmp->Collision;
+			dmp->Collision = tmp;
+		}
+		else
+			db[count] = tmp;
 		tmp = Page_init();
 	}
+	unset_Page(tmp);
 	str = NULL;
-	while (get_next_line(0, str) > 0)
+	write(1, "Recherche ....\n", 15);
+	while (get_next_line(0, &str) > 0)
 	{
-		if (!str)
-			break;
-		count =  result_function(*str);
-		dmp = 
+
+		count = hashing_function(str);
 		if (db[count])
-			write(0, db[count]->value, ft_strlen(db[count]->value));
+		{
+			write(1, db[count]->value, ft_strlen(db[count]->value));
+			write(1, "\n", 1);
+		}
 		else
 		{
-			write(0, *str, ft_strlen(*str));
-
+			write(1, str, ft_strlen(str));
+			write(1, ": Not found.\n", 13);
 		}
-		free(*str);
+		free(str);
 	}
+	if (str)
+		free(str);
 	count = 0;
 	while (count < DB_TAILLE)
 	{
 		if (db[count])
-		{
-			if (db[count]->value)
-				free(db[count]->value);
-			if (db[count]->keyword)
-				free(db[count]->value);
-			if (db[count]->Collision)
-				free(db[count]->Collision);
-			free(db[count]);
-		}
+			unset_Page(db[count]);
 		count++;
 	}
 	free(db);

@@ -1,8 +1,10 @@
 #ifndef HOTRACE_H
 # define HOTRACE_H
 
-# include <unistd.h>
-# include <stdlib.h>
+
+# include "unistd.h"
+# include "stdlib.h"
+# define DB_TAILLE 10000019
 
 typedef struct s_Page
 {
@@ -11,21 +13,14 @@ typedef struct s_Page
 	struct s_Page *Collision;
 } t_Page;
 
-typedef struct s_db
-{
-	t_Page	*Page;
-	t_Page	*Collision;
-	struct s_db *next;
-}	t_db;
 
-int				get_next_line(int fd, char **line);
+int	get_next_line(int fd, char **line);
 unsigned int	ft_strlen(const char *);
-size_t			hashing_function(t_Page *tmp);
-size_t			result_function(char *tmp);
-int				set_db(t_db **db);
-int	set_db_to_count(t_db *db, size_t count, t_Page *tmp);
-t_Page			*Page_init(void);
-t_db	*get_db_with_count(t_db	*db, size_t	count);
+size_t	hashing_function(char *tmp);
+size_t	result_function(char *tmp);
+void	set_db(t_Page **db);
+void	unset_Page(t_Page *tmp);
+t_Page	*Page_init(void);
 
 #endif
 
