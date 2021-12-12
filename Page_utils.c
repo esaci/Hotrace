@@ -12,14 +12,30 @@
 
 #include "hotrace.h"
 
+t_Page	*small_unset_page(t_Page *dmp)
+{
+	t_Page	*tmp;
+
+	tmp = dmp->collision;
+	if (dmp->value)
+		free(dmp->value);
+	if (dmp->keyword)
+		free(dmp->keyword);
+	free(dmp);
+	return (tmp);
+}
+
 void	unset_page(t_Page *tmp)
 {
+	t_Page	*dmp;
+
 	if (tmp->value)
 		free(tmp->value);
 	if (tmp->keyword)
 		free(tmp->keyword);
-	if (tmp->collision)
-		free(tmp->collision);
+	dmp = tmp->collision;
+	while (dmp)
+		dmp = small_unset_page(dmp);
 	free(tmp);
 }
 
