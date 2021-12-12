@@ -2,6 +2,7 @@
 
 int	main( void )
 {
+
 	t_Page			**db;
 	t_Page			*dmp;
 	t_Page			*tmp;
@@ -20,6 +21,7 @@ int	main( void )
 			break;
 		if (get_next_line(0, &(tmp->value)) <= 0 || !tmp->value || tmp->value[0] == '\0')
 			break;
+
 		count = hashing_function(tmp->keyword);
 		if (db[count])
 		{
@@ -37,6 +39,7 @@ int	main( void )
 	write(1, "Recherche ....\n", 15);
 	while (get_next_line(0, &str) > 0)
 	{
+
 		count = hashing_function(str);
 		if (db[count])
 		{

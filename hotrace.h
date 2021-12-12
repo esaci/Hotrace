@@ -1,6 +1,7 @@
 #ifndef HOTRACE_H
 # define HOTRACE_H
 
+
 # include "unistd.h"
 # include "stdlib.h"
 # define DB_TAILLE 10000019
@@ -11,6 +12,7 @@ typedef struct s_Page
 	char *value;
 	struct s_Page *Collision;
 } t_Page;
+
 
 int	get_next_line(int fd, char **line);
 unsigned int	ft_strlen(const char *);
