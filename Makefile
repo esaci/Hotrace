@@ -5,7 +5,8 @@ SRC =	main.c	\
 		GNL/get_next_line_utils.c	\
 		hash_utils.c				\
 		db_utils.c					\
-		Page_utils.c
+		Page_utils.c				\
+		Collision_utils.c
 	
 
 CXX = cc

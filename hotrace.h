@@ -17,10 +17,13 @@ typedef struct s_Page
 int	get_next_line(int fd, char **line);
 unsigned int	ft_strlen(const char *);
 size_t	hashing_function(char *tmp);
-size_t	result_function(char *tmp);
 void	set_db(t_Page **db);
-void	unset_Page(t_Page *tmp);
-t_Page	*Page_init(void);
+void	unset_page(t_Page *tmp);
+t_Page	*page_init(void);
+void	unset_db(t_Page **db);
+void	fill_db(t_Page **db);
+void	result_db(t_Page **db);
+char	*ft_recover(char *key, t_Page **db);
 
 #endif
 

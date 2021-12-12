@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Page_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: esaci <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/12 14:17:04 by esaci             #+#    #+#             */
+/*   Updated: 2021/12/12 14:17:08 by esaci            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "hotrace.h"
 
-void	unset_Page(t_Page *tmp)
+void	unset_page(t_Page *tmp)
 {
 	if (tmp->value)
 		free(tmp->value);
@@ -11,7 +23,7 @@ void	unset_Page(t_Page *tmp)
 	free(tmp);
 }
 
-t_Page	*Page_init(void)
+t_Page	*page_init(void)
 {
 	t_Page	*tmp;
 
