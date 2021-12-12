@@ -32,5 +32,6 @@ void	ft_fin(char *line, char *countu);
 int		get_next_line(int fd, char **line);
 int		ft_strlen(const char *s);
 int		get_next_line2(int ct, int count2, char *countu);
-int		return_free(char *str);
+char	*return_free(char *str);
+
 #endif

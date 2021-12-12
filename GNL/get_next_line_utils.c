@@ -45,8 +45,8 @@ int	ft_strlen(const char *s)
 	return (count);
 }
 
-int	return_free(char *str)
+char	*return_free(char *str)
 {
 	free(str);
-	return (0);
+	return (NULL);
 }
